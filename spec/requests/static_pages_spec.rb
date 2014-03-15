@@ -6,12 +6,16 @@ describe "StaticPages" do
 			visit '/static_pages/home'
 			page.should have_selector('h1', :text => 'Instruction App')
 		end
-		it "should have title 'Home'" do
+		it "should have base title" do
 			visit '/static_pages/home'
-			page.should have_selector('title', :text => "RoR Instruction App | Home")
+			page.should have_selector('title', :text => "RoR Instruction App")
+		end
+		it "sould not have custom title 'Home'" do
+			visit '/static_pages/home'
+			page.should_not have_selector('title', :text => "| Home")
 		end
 	end
-
+	
 	describe "Help page" do
 		it "should have h1 'Help'" do
 			visit '/static_pages/help'
