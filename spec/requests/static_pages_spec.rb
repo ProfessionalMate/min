@@ -1,51 +1,28 @@
 require 'spec_helper'
 
 describe "StaticPages" do
+	subject{page}
 	describe "Home page" do
-		it "should  have h1 'Instruction App'" do
-			visit '/static_pages/home'
-			page.should have_selector('h1', :text => 'Instruction App')
-		end
-		it "should have base title" do
-			visit '/static_pages/home'
-			page.should have_selector('title', :text => "RoR Instruction App")
-		end
-		it "sould not have custom title 'Home'" do
-			visit '/static_pages/home'
-			page.should_not have_selector('title', :text => "| Home")
-		end
+		before{visit root_path}
+			it{should have_selector('h1', text: 'Instruction App')}
+			it{should have_selector('title', text: full_title(''))}
+			it{should_not have_selector'title', text: "| Home"}
 	end
 	
 	describe "Help page" do
-		it "should have h1 'Help'" do
-			visit '/static_pages/help'
-			page.should have_selector('h1', :text => 'Help')
-		end
-		it "should have title 'RoR Instruction App | Help'" do
-			visit '/static_pages/help'
-			page.should have_selector('title', :text => "RoR Instruction App | Help")
-		end
+		before{visit help_path}
+			it{should have_selector('h1', text: 'Help')}
+			it{should have_selector('title', text: full_title('Help'))}
 	end
 
 	describe "About page" do
-		it "it should have h1 'About the Company'" do
-			visit '/static_pages/about'
-			page.should have_selector('h1', :text => 'About the Company')
-		end
-		it "should have title 'RoR Instruction App'" do
-			visit '/static_pages/about'
-			page.should have_selector('title', :text => "RoR Instruction App | About the Company")
-
-		end
+		before{visit about_path}
+			it{should have_selector('h1', text: 'About the Company')}
+			it{should have_selector('title', text: full_title('About the Company'))}
 	end
 	describe "Contact page" do
-		it "should have h1 'Contact Us'" do
-			visit '/static_pages/contact'
-			page.should have_selector('h1', :text => 'Contact Us')
-		end
-		it "should have title 'RoR Instruction App | Contact Us'" do
-			visit '/static_pages/contact'
-			page.should have_selector('title', :text => "RoR Instruction App | Contact Us")
-		end
+		before{visit contact_path}
+			it{should have_selector('h1', text: 'Contact Us')}
+			it{should have_selector('title', text: full_title('Contact Us'))}
 	end
 end
